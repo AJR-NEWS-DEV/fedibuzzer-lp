@@ -44,7 +44,7 @@ function doFetch() {
                 }
         } else {
             const shareText = `${document.title}\n${location.href} #fedishare`;
-            window.open(content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText).replace("__URL__", encodeURIComponent(location.href))));
+            window.open(content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText)).replace("__URL__", encodeURIComponent(location.href)));
         }
         isLoading.value = false;
     });
