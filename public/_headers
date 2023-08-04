@@ -1,2 +1,5 @@
 https://fedishare-lp.pages.dev/*
   X-Robots-Tag: noindex
+
+/share
+  X-Robots-Tag: noindex
