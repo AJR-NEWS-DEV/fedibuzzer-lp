@@ -1,7 +1,7 @@
 <template>
     <div>
         <form class="fedibuzzer" @submit.prevent="doFetch()">
-            <input type="text" v-model="domain" placeholder="インスタンスのドメイン（例: misskey.io）">
+            <input type="text" v-model="domain" :autofocus="autoFocus" placeholder="インスタンスのドメイン（例: misskey.io）">
             <button :disabled="isLoading" type="submit">
                 <template v-if="isLoading">
                     読み込み中…
@@ -24,11 +24,13 @@ const props = withDefaults(defineProps<{
     text?: string | null;
     credit?: boolean;
     behavior?: 'newtab' | 'navigate';
+    autoFocus?: boolean;
 }>(), {
     url: 'https://fedibuzzer.ajr-news.com',
     text: null,
     credit: true,
-    behavior: 'newtab'
+    behavior: 'newtab',
+    autoFocus: false,
 });
 
 function doFetch() {

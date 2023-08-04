@@ -10,7 +10,7 @@
                 {{ (query?.text as string) ? query.text : `${query?.url ?? '(URLが指定されていません)'} #fedishare` }}
             </div>
         </div>
-        <FedibuzzerPreview :credit="false" :behavior="'navigate'" :text="(query?.text as string) ?? null" :url="(query?.url as string) ?? undefined" />
+        <FedibuzzerPreview :auto-focus="true" :credit="false" :behavior="'navigate'" :text="(query?.text as string) ?? null" :url="(query?.url as string) ?? undefined" />
     </div>
 </template>
 
