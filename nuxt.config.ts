@@ -10,4 +10,11 @@ export default defineNuxtConfig({
   'google-adsense': {
     id: 'ca-pub-6974593739286119',
   },
+  nitro: {
+    prerender: {
+      routes: [
+        '/share',
+      ],
+    },
+  },
 })
