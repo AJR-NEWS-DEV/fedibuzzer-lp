@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="fedishare" @submit.prevent="doFetch()">
+        <form class="fedibuzzer" @submit.prevent="doFetch()">
             <input type="text" v-model="domain" placeholder="インスタンスのドメイン（例: misskey.io）">
             <button :disabled="isLoading" type="submit">
                 <template v-if="isLoading">
@@ -11,7 +11,7 @@
                 </template>
             </button>
         </form>
-        <div class="credit"><a href="https://fedishare.ajr-news.com/" target="_blank" rel="noopener">FediShare - Powered by AJR-NEWS.com</a></div>
+        <div class="credit"><a href="https://fedibuzzer.ajr-news.com/" target="_blank" rel="noopener">FediShare - Powered by AJR-NEWS.com</a></div>
     </div>
 </template>
 
@@ -28,7 +28,7 @@ function doFetch() {
         return;
     }
     isLoading.value = true;
-    window.fetch(`https://fedishare-api.ajr-news.com/api/v1/instance/${instanceDomain}`).then(async (ctx) => {
+    window.fetch(`https://fedibuzzer-api.ajr-news.com/api/v1/instance/${instanceDomain}`).then(async (ctx) => {
         const content = await ctx.json();
         if (content.status != 200) {
             switch (content.message.toLowerCase()) {
@@ -43,7 +43,7 @@ function doFetch() {
                     break;
                 }
         } else {
-            const shareText = `${document.title}\n${location.href} #fedishare`;
+            const shareText = `${document.title}\n${location.href} #fedibuzzer`;
             window.open(content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText)).replace("__URL__", encodeURIComponent(location.href)));
         }
         isLoading.value = false;
@@ -52,7 +52,7 @@ function doFetch() {
 </script>
 
 <style scoped>
-.fedishare {
+.fedibuzzer {
     --border-color: #ccc;
     --text-color: #000;
     --button-background-color: #007bff;
@@ -67,7 +67,7 @@ function doFetch() {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fedishare.dark {
+.fedibuzzer.dark {
     --border-color: #444;
     --text-color: #fff;
     --button-background-color: #007bff;
@@ -76,7 +76,7 @@ function doFetch() {
 }
 
 @media (prefers-color-scheme: dark) {
-    .fedishare.auto {
+    .fedibuzzer.auto {
         --border-color: #444;
         --text-color: #fff;
         --button-background-color: #007bff;
@@ -85,7 +85,7 @@ function doFetch() {
     }
 }
 
-.fedishare input[type="text"] {
+.fedibuzzer input[type="text"] {
     display: block;
     flex-grow: 1;
     border: none;
@@ -95,7 +95,7 @@ function doFetch() {
     color: var(--text-color);
 }
 
-.fedishare button {
+.fedibuzzer button {
     background-color: var(--button-background-color);
     flex-shrink: 0;
     color: white;
@@ -108,21 +108,21 @@ function doFetch() {
     transition: background-color 0.1s ease;
 }
 
-.fedishare button:not(:disabled):hover,
-.fedishare button:not(:disabled):focus-visible {
+.fedibuzzer button:not(:disabled):hover,
+.fedibuzzer button:not(:disabled):focus-visible {
     background-color: var(--button-hover-background-color);
 }
 
-.fedishare button:not(:disabled):active {
+.fedibuzzer button:not(:disabled):active {
     background-color: var(--button-hover-background-color);
 }
 
-.fedishare button:disabled {
+.fedibuzzer button:disabled {
     opacity: .7;
     cursor: not-allowed;
 }
 
-.fedishare button .i {
+.fedibuzzer button .i {
     display: inline-block;
     text-transform: none;
     height: 1rem;
@@ -143,16 +143,16 @@ function doFetch() {
 }
 
 @media (max-width: 600px) {
-    .fedishare {
+    .fedibuzzer {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .fedishare input[type="text"] {
+    .fedibuzzer input[type="text"] {
         padding: 8px 8px;
     }
 
-    .fedishare button {
+    .fedibuzzer button {
         margin-top: 8px;
         margin-left: 0;
     }
