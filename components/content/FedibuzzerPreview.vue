@@ -11,13 +11,25 @@
                 </template>
             </button>
         </form>
-        <div class="credit"><a href="https://fedibuzzer.ajr-news.com/" target="_blank" rel="noopener">FediShare - Powered by AJR-NEWS.com</a></div>
+        <div v-if="credit" class="credit"><a href="https://fedibuzzer.ajr-news.com/" target="_blank" rel="noopener">FediShare - Powered by AJR-NEWS.com</a></div>
     </div>
 </template>
 
 <script setup lang="ts">
 const domain = ref<string>('');
 const isLoading = ref<boolean>(false);
+
+const props = withDefaults(defineProps<{
+    url?: string;
+    text?: string | null;
+    credit?: boolean;
+    behavior?: 'newtab' | 'navigate';
+}>(), {
+    url: 'https://fedibuzzer.ajr-news.com',
+    text: null,
+    credit: true,
+    behavior: 'newtab'
+});
 
 function doFetch() {
     const instanceDomain = domain.value;
@@ -43,8 +55,12 @@ function doFetch() {
                     break;
                 }
         } else {
-            const shareText = `${document.title}\n${location.href} #fedibuzzer`;
-            window.open(content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText)).replace("__URL__", encodeURIComponent(location.href)));
+            const shareText = props.text ? props.text : `${props.url} #fedibuzzer`;
+            if (props.behavior === 'newtab') {
+                window.open(content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText)).replace("__URL__", encodeURIComponent(props.url)));
+            } else if (props.behavior === 'navigate') {
+                location.href = content.body.urlScheme.replace("__TEXT__", encodeURIComponent(shareText)).replace("__URL__", encodeURIComponent(props.url));
+            }
         }
         isLoading.value = false;
     });
