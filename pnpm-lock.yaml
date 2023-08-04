@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@nuxtjs/google-adsense':
+    specifier: ^2.1.0
+    version: 2.1.0(rollup@3.27.0)
   content-wind:
     specifier: latest
     version: 0.6.7(postcss@8.4.27)(rollup@3.27.0)(vue@3.3.4)(webpack@5.88.2)
@@ -1197,6 +1200,15 @@ packages:
       '@nuxt/kit': 3.6.5(rollup@3.27.0)
       lodash.template: 4.5.0
       pathe: 1.1.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  /@nuxtjs/google-adsense@2.1.0(rollup@3.27.0):
+    resolution: {integrity: sha512-ken1aITTBEluqyT9yvpdzMYaRDR3SOPcWeGOQHYj/pfw/IJb/Ye0Ylj7rF8gVyBurCbsbTV2pGlEDoalBDYMbg==}
+    dependencies:
+      '@nuxt/kit': 3.6.5(rollup@3.27.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
