@@ -91,6 +91,8 @@ watch(instances, (to) => {
     if (props.useMemory && process.client) {
         localStorage.setItem('fedibuzzer_instances', JSON.stringify(to));
     }
+}, {
+    deep: true,
 });
 </script>
 
