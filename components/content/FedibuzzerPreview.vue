@@ -1,7 +1,10 @@
 <template>
     <div>
         <form class="fedibuzzer" @submit.prevent="doFetch()">
-            <input type="text" v-model="domain" :autofocus="autoFocus" placeholder="インスタンスのドメイン（例: misskey.io）">
+            <input type="text" v-model="domain" :autofocus="autoFocus" placeholder="インスタンスのドメイン（例: misskey.io）" />
+            <datalist v-if="useMemory" id="instances">
+                <option v-for="instance in instances" :value="instance"></option>
+            </datalist>
             <button :disabled="isLoading" type="submit">
                 <template v-if="isLoading">
                     読み込み中…
@@ -25,12 +28,14 @@ const props = withDefaults(defineProps<{
     credit?: boolean;
     behavior?: 'newtab' | 'navigate';
     autoFocus?: boolean;
+    useMemory?: boolean;
 }>(), {
     url: 'https://fedibuzzer.ajr-news.com',
     text: null,
     credit: true,
     behavior: 'newtab',
     autoFocus: false,
+    useMemory: false,
 });
 
 function doFetch() {
@@ -42,6 +47,9 @@ function doFetch() {
         return;
     }
     isLoading.value = true;
+    if (props.useMemory) {
+        instances.value.push(instanceDomain);
+    }
     window.fetch(`https://fedibuzzer-api.ajr-news.com/api/v1/instance/${instanceDomain}`).then(async (ctx) => {
         const content = await ctx.json();
         if (content.status != 200) {
@@ -67,6 +75,23 @@ function doFetch() {
         isLoading.value = false;
     });
 }
+
+const instances = ref<string[]>([]);
+
+onMounted(() => {
+    if (process.client) {
+        const ls = localStorage.getItem('fedibuzzer_instances');
+        if (props.useMemory && ls) {
+            instances.value = JSON.parse(ls);
+        }
+    }
+});
+
+watch(instances, (to) => {
+    if (props.useMemory && process.client) {
+        localStorage.setItem('fedibuzzer_instances', JSON.stringify(to));
+    }
+});
 </script>
 
 <style scoped>
