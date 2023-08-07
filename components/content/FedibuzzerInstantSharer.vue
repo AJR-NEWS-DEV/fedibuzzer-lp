@@ -16,4 +16,20 @@
 
 <script setup lang="ts">
 const { query } = useRoute();
+
+if (process.client && query.url) {
+    if ('sendBeacon' in navigator) {
+        let domain: string;
+        try {
+            const url = new URL(query.url as string);
+            domain = url.host;
+        } catch (_) {
+            domain = query.url as string;
+        }
+        const data = new URLSearchParams({
+            domain,
+        });
+        navigator.sendBeacon('https://fedibuzzer-api.ajr-news.com/api/v1/record', data);
+    }
+}
 </script>
