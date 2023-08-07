@@ -1,7 +1,7 @@
 <template>
     <div>
         <form class="fedibuzzer" @submit.prevent="doFetch()">
-            <input type="text" v-model="domain" :autofocus="autoFocus" placeholder="インスタンスのドメイン（例: misskey.io）" />
+            <input type="text" v-model="domain" :list="useMemory ? 'instances' : undefined" :autofocus="autoFocus" placeholder="インスタンスのドメイン（例: misskey.io）" />
             <datalist v-if="useMemory" id="instances">
                 <option v-for="instance in instances" :value="instance"></option>
             </datalist>
