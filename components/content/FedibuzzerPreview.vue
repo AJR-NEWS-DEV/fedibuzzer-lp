@@ -47,7 +47,7 @@ function doFetch() {
         return;
     }
     isLoading.value = true;
-    if (props.useMemory) {
+    if (props.useMemory && !instances.value.includes(instanceDomain)) {
         instances.value.push(instanceDomain);
     }
     window.fetch(`https://fedibuzzer-api.ajr-news.com/api/v1/instance/${instanceDomain}`).then(async (ctx) => {
