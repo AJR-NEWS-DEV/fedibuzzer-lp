@@ -1,6 +1,6 @@
 # Fedibuzzer フロントエンド
 
-Fedibuzzer API
+Fediverse対応SNSへの統合シェアボタンツール（使用法説明・APIドキュメント等）
 
 [バックエンドはこちら](https://github.com/AJR-NEWS-DEV/fedibuzzer)
 
