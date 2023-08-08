@@ -2,6 +2,8 @@
 
 Fedishareのサービス紹介ページ・外部リンク共有のフロントエンド
 
+[バックエンドはこちら](https://github.com/AJR-NEWS-DEV/fedibuzzer)
+
 Nuxt および Nuxt Content Document Driven Mode を使用して作成
 
 ## 初期設定
