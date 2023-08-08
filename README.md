@@ -1,21 +1,34 @@
-# My Website
+# Fedibuzzer Service Page
 
-My website made by [Content Wind](https://content-wind.nuxt.space) theme.
+Fedishareのサービス紹介ページ・外部リンク共有のフロントエンド
 
-## Setup
+Nuxt および Nuxt Content Document Driven Mode を使用して作成
+
+## 初期設定
 
 ```bash
+# NPM
 npm install
+
+# Yarn
+yarn
+
+# PNPM
+pnpm install
 ```
 
-## Development
+## 開発サーバー
 
 ```bash
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) to see your app.
+[http://localhost:3000](http://localhost:3000) から開発サーバーを見れます
 
-## Deployment
+## デプロイ
 
 Learn more how to deploy on [Nuxt docs](https://nuxt.com/docs/getting-started/deployment).
+
+## ライセンス
+
+MIT
