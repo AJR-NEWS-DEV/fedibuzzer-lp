@@ -1,6 +1,6 @@
-# Fedibuzzer Service Page
+# Fedibuzzer フロントエンド
 
-Fedishareのサービス紹介ページ・外部リンク共有のフロントエンド
+Fedibuzzer API
 
 [バックエンドはこちら](https://github.com/AJR-NEWS-DEV/fedibuzzer)
 
