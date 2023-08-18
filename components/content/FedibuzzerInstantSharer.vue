@@ -7,7 +7,7 @@
         <div class="mb-4 p-4 rounded-lg border">
             <h2 class="mb-2 font-bold text-xl">ウェブサイトから受け取った投稿内容</h2>
             <div class="whitespace-pre-wrap">
-                {{ (query?.text as string) ? query.text : `${query?.url ?? '(URLが指定されていません)'} #fedishare` }}
+                {{ (query?.text as string) ? query.text : (query?.url ?? '(URLが指定されていません)') }}
             </div>
         </div>
         <FedibuzzerPreview :auto-focus="true" :use-memory="true" :credit="false" :behavior="'navigate'" :text="(query?.text as string) ?? null" :url="(query?.url as string) ?? undefined" />
